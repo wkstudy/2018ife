@@ -1,0 +1,50 @@
+* {
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+body {
+	width: 80%;
+}
+
+.basicInfo span,
+.tel span,
+.skill span,
+.education span,
+.item span {
+	font-weight: bold;
+}
+
+h2 {
+	padding-left: 15px;
+	color: white;
+	background-color: #858585;
+	height: 50px;
+	line-height: 50px;
+}
+
+h3 { 
+	float: left;
+	text-align: center;
+	line-height: 140px;
+	width: 20%;
+	height: 140px;
+	background-color: #D6D6D6;
+	border-bottom: 1px solid #FFFFFF ;
+}
+
+section {
+	height: 140px;
+	width: 80%;
+	float: left;
+	border-bottom: 1px solid #D6D6D6 ;
+	border-right: 1px solid #D6D6D6 ;
+	padding-left: 15px;
+	padding-top: 20px;
+}
+ 
+.clearfix {
+	clear: both;
+
+}

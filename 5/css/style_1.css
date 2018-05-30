@@ -1,0 +1,8 @@
+.basicInfo span,
+.tel span,
+.skill span,
+.education span,
+.item span {
+	font-weight: bold;
+
+}
