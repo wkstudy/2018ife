@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>float</title>
+	<style>
+	.* {
+		box-sizing: border-box;
+	}
+	.content {
+		overflow: hidden;
+		margin-bottom: 7px;
+	}
+	#left_first {
+		float: left;
+		width: 30%;
+		height: 200px;
+		background-color: #3BB2D0;
+	}
+	#right_first {
+		float: left;
+		width: 70%;
+		height: 200px;
+		background-color: #D6D6D6;
+	}
+
+	#left_sec {
+		float: left;
+		width: 300px;
+		height: 200px;
+		background-color: #3BB2D0;
+	}
+	#right_sec {
+		margin-left: 300px;
+		height: 200px;
+		background-color: #D6D6D6;
+	}
+	#left_thd {
+		
+		height: 100px;
+		background-color: #3BB2D0;
+	}
+	#right_thd {
+		float: right;
+		width: 300px;
+		height: 200px;
+		background-color: #D6D6D6;
+	}
+	#sub {
+		float: left;
+		width: 300px;
+		height: 200px;
+		background-color: #3BB2D0;
+	}
+	#extra {
+		width: 300px;
+		float: right;
+		height: 200px;
+		background-color: #D6D6D6;
+	}
+	#main {
+		margin-left: 300px;
+		margin-right: 300px;
+		background-color: gray;
+	}
+	#sub_fir {
+		width: 300px;
+		height: 200px;
+		float: left;
+		background-color: #D6D6D6;
+	}
+	#main_fir {
+		width: 300px;
+		height: 200px;
+		float: left;
+		background-color: gray;
+	}
+	#extra_fir {
+		margin-left: 600px;
+		background-color: #3BB2D0;
+		min-height: 10px;
+	}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div id="left_first">30%</div>
+		<div id="right_first">70%</div>
+	</div>
+	<div class="content">
+		<div id="left_sec">300px</div>
+		<div id="right_sec">自适应</div>
+	</div>
+	<div class="content">
+		
+		<div id="right_thd">300px</div>
+		<div id="left_thd">自适应</div>
+		<!-- 左边宽度不要设置，只需要先显示右边（先渲染），再显示左边就行了 -->
+	</div>
+	<div class="content">
+		<!-- 这三个渲染的顺序很关键，常规顺序就GG了 -->
+		<div id="sub">300px</div>
+		<div id="extra">300px</div>
+		<div id="main">自适应</div>
+	</div>
+	<div class="content">
+		<div id="sub_fir">300px</div>
+		<div id="main_fir">300px</div>
+		<div id="extra_fir">自适应</div>
+	</div>
+</body>
+</html>

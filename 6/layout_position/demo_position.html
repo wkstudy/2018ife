@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>position</title>
+	<style>
+	* {
+		box-sizing: border-box;
+	}
+	.container {
+		/*padding:0;*/
+		position: relative;
+		margin-bottom: 7px;
+	}
+	#left_fir {
+		width: 30%;
+		height: 200px;
+		background-color: #3BB2D0;
+	}
+	#right_fir {
+		width:70%;
+		height: 200px;
+		background-color: #D6D6D6;
+		position: absolute;
+		left: 30%;
+		top:0;
+	}
+	#left_sec {
+		width: 300px;
+		height: 200px;
+		background-color: #3BB2D0;
+	}
+	#right_sec {
+		position: absolute;
+		left: 300px;
+		top: 0;
+		width: calc(100% - 300px);
+		background-color: #D6D6D6;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="left_fir">30%</div>
+		<div id="right_fir">70%</div>
+	</div>
+	<div class="container">
+		<div id="left_sec">300px</div>
+		<div id="right_sec">自适应</div>
+	</div>
+</body>
+</html>
