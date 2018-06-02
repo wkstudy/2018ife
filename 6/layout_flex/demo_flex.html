@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>flex</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		.container {
+			display: flex;
+			margin-bottom: 7px;
+			flex-direction: row;
+		}
+		.container_reverse {
+			display: flex;
+			margin-bottom: 7px;
+			flex-direction: row-reverse;
+		}
+		#left_fir {
+			background-color: #3BB2D0;
+			flex: 3;
+		}
+		#right_fir {
+			flex: 7;
+			background-color: #D6D6D6;
+		}
+		#left_sec {
+			background-color: #3BB2D0;
+			width: 300px;
+		}
+		#right_sec {
+			background-color: #D6D6D6;
+			width: calc(100% - 300px);
+		}
+		#sub_n {
+			width: 300px;
+			background-color: #3BB2D0;
+		}
+		#main_n {
+			width: calc(100% - 600px);
+			background-color: gray;
+		}
+		#extra_n {
+			width: 300px;
+			background-color: #D6D6D6;
+		}
+		#sub {
+			width: 300px;
+			background-color: #3BB2D0;
+		}
+		#main {
+			width: 300px;
+			background-color: gray;
+		}
+		#extra {
+			background-color: #D6D6D6;
+			width: calc(100% - 600px);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="left_fir">30%</div>
+		<div id="right_fir">70%</div>
+	</div>
+	<div class="container">
+		<div id="left_sec">300px</div>
+		<div id="right_sec">自适应</div>
+	</div>
+	<div class="container_reverse">
+		<div id="left_sec">300px</div>
+		<div id="right_sec">自适应</div>
+	</div>
+	<div class="container">
+		<div id="sub_n">300px</div>
+		<div id="main_n">自适应</div>
+		<div id="extra_n">300px</div>
+	</div>
+	<div class="container">
+		<div id="sub">300px</div>
+		<div id="main">300px</div>
+		<div id="extra">自适应</div>
+	</div>
+</body>
+</html>
