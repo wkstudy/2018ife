@@ -54,7 +54,7 @@ nav ul li {
 	height: 37px;
 }
 #mainNav {
-	border-bottom: 2px solid #EEEEEE;
+	border-bottom: 1px solid #EEEEEE;
 }
 #mainNav ul {
 	width: 960px;
@@ -71,11 +71,11 @@ nav ul li {
 	width: 80px;
 	font-size: 16px;
 	text-align: center;
-	border:2px solid #EEEEEE;
+	border:1px solid #EEEEEE;
 	border-radius: 15px 15px 0 0/15px 15px 0 0;
 }
 #mainNav ul li:nth-child(1) {
-	border-bottom: 2px solid white;
+	border-bottom: 1px solid white;
 	background-color: white;
 }
 #content {
