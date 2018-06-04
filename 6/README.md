@@ -34,3 +34,8 @@ width: calc(100% - 300px);
 **本页面使用width：calc()属性的，可以考虑是否可以通过改变渲染顺序、设置margin、position完成任务(思路为：这需要避免设置要自适应元素的宽度，所以该元素不能用position，那么需要先渲染该元素，设置相应的margin，让固定宽度的元素定位到那个margin处，参考本页面中第三个实例（左边固定，右边自适应），这种情况下可能要考虑设置高度，因为会对后来的因素有影响)
 * layout_flex/demo_flex.html(flex完成要求（常用布局）)
 ** flex中若要自适应布局全都用的calc()属性，没有想到别的办法
+* design/index.html、indexError.html
+** 主导航的li设为inline-block,导致中间有间隙，需要去除
+** indexError.html因为要自适应宽度，所以不嫩设置宽度，使用float，结果导致一行内元素不是均匀排列
+** index.html采用index布局，但是显示效果和indexError.html的效果差不多，没有占满一行，最后设置了每个元素的宽度才达成目标
+**没有解决：导航HOME下应该没有下划线，没有想到去掉的办法

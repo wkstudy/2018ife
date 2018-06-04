@@ -1,0 +1,135 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+header {
+	background-color: #333333;
+	height: 70px;
+}
+header section {
+	width: 960px;
+	margin:0 auto;
+	color: white;
+}
+header section span {
+	line-height: 70px;
+	font-size: 22px;
+}
+header section nav {
+	float: right;
+}
+header section nav ul li {
+	display: inline-block;
+}
+header section nav ul li a {
+	color: white;
+}
+nav ul li {
+	cursor: pointer;
+}
+#banner {
+	background-color: #66BB33;
+	height: 255px;
+	position: relative;
+}
+#banner nav {
+	position: absolute;
+	bottom: 10px;
+	right: 480px;
+}
+#banner nav ul li {
+	display: inline-block;
+	width: 30px;
+	line-height: 30px;
+	height: 30px;
+	color: black;
+	background-color: white;
+	border: 1px solid #66BB33;
+	text-align: center;
+	vertical-align: text-bottom;
+}
+#banner nav ul li:nth-child(2) {
+	height: 37px;
+}
+#mainNav {
+	border-bottom: 2px solid #EEEEEE;
+}
+#mainNav ul {
+	width: 960px;
+	margin: 10px auto 0px auto;
+	/*font-size: 0;去除inline-block之间默认的空格*/
+	letter-spacing: -4px;/*去除inline-block之间默认的空格*/
+}
+#mainNav ul li {
+	display: inline-block;
+	background-color: #EEEEEE;
+	height: 40px;
+	letter-spacing: 0;
+	line-height: 40px;
+	width: 80px;
+	font-size: 16px;
+	text-align: center;
+	border:2px solid #EEEEEE;
+	border-radius: 15px 15px 0 0/15px 15px 0 0;
+}
+#mainNav ul li:nth-child(1) {
+	border-bottom: 2px solid white;
+	background-color: white;
+}
+#content {
+	width:960px;
+	margin:3px auto auto auto;
+	overflow: auto;
+}
+#content section {
+	padding: 80px;
+	border: 1px solid black;
+	margin-bottom: 5px;
+}
+#c1,
+#c2,
+#c8,
+#c9 {
+	float: left;
+}
+#c3,
+#c10 {
+	float: right;
+	clear: right;
+}
+#c4,
+#c5,
+#c6 {
+	float: left;
+}
+#c7 {
+	float: right;
+	clear: right;
+}
+footer {
+	background-color: #666666;
+	height: 200px;
+	text-align: center;
+	padding-top: 10px;
+}
+#content div{
+	display: flex;
+	justify-content: space-between;
+}
+#content div section:nth-child(1),
+#content div section:nth-child(2),
+#content  div section:nth-child(3),
+#content  div section:nth-child(4) {
+	flex: 1;
+}
+
+#flex1,
+#flex2,
+#flex3,
+#flex4,
+#flex5 {
+	margin-left: 2px;
+	margin-right: 2px;
+}
