@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第十六天，开始感受JS的乐趣</title>
+	<link rel="stylesheet" href="./index.css">
+	<script>
+		function t() {
+			document.getElementById('ti').innerHTML='其实，我是一个演员';
+		}
+	</script>
+</head>
+<body>
+	<h2>
+		简历
+	</h2>
+	<section>
+		<dl>
+			<dt>基本信息</dt>
+			<dd>
+				<span>姓名</span>&nbsp;&nbsp;
+				<span>张三</span>
+			</dd>
+			<dd>
+				<span>性别</span>&nbsp;&nbsp;
+				<span>男</span>
+			</dd>
+			<dd class="last">
+				<span>应聘职位</span>&nbsp;&nbsp;
+				<span>Web前端工程师</span>
+			</dd>
+			<dt>联系方式</dt>
+			<dd>
+				<span>手机</span>&nbsp;&nbsp;
+				<span>12312341234</span>
+			</dd>
+			<dd>
+				<span>Email</span>&nbsp;&nbsp;
+				<a href="#">joinfe@baidu.com</a>
+			</dd>
+			<dd class="last">
+				<span>个人主页</span>&nbsp;&nbsp;
+				<a href="#">Github</a>
+			</dd>
+			<dt>能力描述</dt>
+			<dd class="x">
+				<span>技术能力</span>&nbsp;&nbsp;
+				<span>熟练掌握HTML,CSS,JavaScript</span>
+			</dd>
+			<dd class="last x">
+				<span>综合能力</span>&nbsp;&nbsp;
+				<span>良好的沟通，主动积极，努力勤奋</span>
+			</dd>
+			<dt>教育经历</dt>
+			<dd class="x">
+				<span>本科</span>&nbsp;&nbsp;
+				<span>百度前端技术学院小薇学院</span>
+			</dd>
+			<dd class="last x">
+				<span>研究生</span>&nbsp;&nbsp;
+				<span>百度前端技术学院大斌学院</span>
+			</dd>
+			<dt>项目经历</dt>
+			<dd class="x">
+				<span>小度小度</span>&nbsp;&nbsp;
+				<span>作为前端工程师角色参与了ABC组件的开发</span>
+			</dd>
+			<dd class="last x">
+				<span>SAN Doc</span>&nbsp;&nbsp;
+				<span>作为文档工程师参与了SAN Doc编写</span>
+			</dd>
+		</dl>
+	</section>
+	<button type="button" onclick="t()">点我</button>
+	<article id="ti"></article>
+</body>
+</html>
