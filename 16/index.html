@@ -8,6 +8,18 @@
 		function t() {
 			document.getElementById('ti').innerHTML='其实，我是一个演员';
 		}
+		function u() {
+			var t = new Date();
+			if(t.getHours() >= 5 && t.getHours() < 11){
+				document.getElementById('ui').innerHTML = '早上好';
+			}else {
+				if(t.getHours() >=11 && t.getHours() <= 4){
+					document.getElementById('ui').innerHTML = '中午好';
+				}else {
+					document.getElementById('ui').innerHTML = '晚上好';
+				}
+			}
+		}
 	</script>
 </head>
 <body>
@@ -73,5 +85,7 @@
 	</section>
 	<button type="button" onclick="t()">点我</button>
 	<article id="ti"></article>
+	<button type="button" onclick="u()">greeting</button>
+	<article id="ui"></article>
 </body>
 </html>

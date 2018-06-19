@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第十七到十八天</title>
+	<style>
+		td {
+			border: 1px solid gray;
+		}
+	</style>
+</head>
+<body>
+	<input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+     <p id="result">运算结果</p>
+    <br>
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn" onclick="de2bin()">转化为二进制</button>
+    <p id="transResult">运算结果</p>
+    <br>
+    <textarea  id="gameof3" cols="30" rows="10"></textarea>
+    <table>
+    	
+    </table>
+    <script>
+    	var first = document.getElementById('first-number');
+    	var second = document.getElementById('second-number');
+    	var result = document.getElementById('result');
+    	var n;//结果
+    	var divide=document.getElementById('divide-btn');
+    	var add=document.getElementById('add-btn');
+    	var minus=document.getElementById('minus-btn');
+    	var times=document.getElementById('times-btn');
+    	
+    	// console.log(typeof first.value);
+
+    	divide.onclick=function () {
+    		if(Number(second.value) == 0){
+    			console.log("除数不能为0");
+    			n = "请重试";
+    		}else {
+    			n = Number(first.value) / Number(second.value); 
+    		}
+    		result.innerHTML = n;
+    	}
+    	add.onclick = function () {
+    		n = Number(first.value)+Number(second.value);
+    		result.innerHTML = n;
+    	}
+    	minus.onclick = function () {
+    		n=Number(first.value) - Number(second.value);
+    		result.innerHTML = n;
+    	}
+    	times.onclick = function () {
+    		n = Number(first.value)*Number(second.value);
+    		result.innerHTML = n;
+    	}
+    	function de2bin() {
+    		var dec=document.getElementById('dec-number').value;
+    		var transResult=document.getElementById('transResult');
+    		var width=document.getElementById('bin-bit').value;
+    		width = parseInt(width);
+    		var a = new Array();
+    		if(Number(dec) < 0){
+    			transResult.innerHTML='输入必须为正整数';
+    		}else{
+    			if(Number(dec) % 1 != 0) {//不为整数
+    				transResult.innerHTML='输入必须为整数';
+    			}else{
+    				var v = Number(dec);
+    				var temp;
+    				var s = new String();
+    				while (v != 0) {
+    					temp = v % 2;
+    					a.push(temp);
+    					v = parseInt(v / 2);
+    				}
+    				//如果要求的宽度大于实际宽度，则在数组后面加0
+    				if(a.length < width){
+    					for(var lens = a.length,i = lens;i < width;i++){
+    						a.push(0);
+    					}
+    				}
+
+    				a.reverse();
+    				transResult.innerHTML = a.join('');
+    			}
+    		}
+    	}
+    	//3的小游戏
+    	var a = new Array();
+    	for(i = 1;i <= 100; i++) {
+    		if(i % 3 ==0 || i % 10 == 3){
+    			a[i] = 'PA';
+    		}else{
+    			a[i] = i;
+    		}
+    	}
+    	//去掉a[0]
+    	a.shift();
+    	document.getElementById('gameof3').innerHTML = a;
+
+    	var temp=document.createDocumentFragment();
+    	for (var i = 1;i <10; i++){
+    		var tr = document.createElement('tr');
+    		for(var j = 1;j <= i; j++){
+    			var td = document.createElement('td');
+    			td.innerHTML = i + '*' + j + '=' + i * j;
+    			tr.appendChild(td);
+    		}
+    		temp.appendChild(tr);
+    	}
+    	document.getElementsByTagName('table')[0].appendChild(temp);
+    </script>
+</body>
+</html>
