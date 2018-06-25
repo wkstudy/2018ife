@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第二十到二十一天，与页面对话</title>
+	<style>
+        select {
+            display: none;
+        }
+        .palette {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .palette li {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        #sprite {
+            background-image: url('./img/erik_ce204002.jpg');
+            background-repeat: no-repeat;
+            width: 480px;
+            height: 480px;
+            background-position: 0 0;
+        }
+    </style>
+</head>
+<body>
+	<input id="name" type="text">    
+	<button id="submit-btn">Submit</button>
+	<label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">        
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+        <option>百度</option>
+        <option>爱奇艺</option>        
+    </select>
+     <ul class="palette">
+        <li style="background-color:crimson"></li>
+        <li style="background-color:bisque"></li>
+        <li style="background-color:blueviolet"></li>
+        <li style="background-color:coral"></li>
+        <li style="background-color:chartreuse"></li>
+        <li style="background-color:darkolivegreen"></li>
+        <li style="background-color:cyan"></li>
+        <li style="background-color:#194738"></li>        
+    </ul>
+
+    <p class="color-picker"></p>
+    <div id="fade-obj" style="width:300px;height:300px;background:#000;opacity: 1"></div>
+	<button id="fade-btn">淡出</button>
+    <div id="sprite">
+        
+    </div>
+	<script>
+		document.getElementById('submit-btn').addEventListener('click', function() {
+			var name = document.getElementById('name').value;
+			console.log(name);
+		}, false)
+		document.getElementById('name').addEventListener('keyup', function(event) {
+			// console.log(this.keyCode);
+			if (event.keyCode == 13) {
+				console.log(this.value);
+			}else {
+				if (event.keyCode == 27) {
+					this.value = '';
+				}
+			}
+		}, false)	
+		document.getElementById('school').addEventListener('click', function() {
+			document.getElementById('school-select').style.display = 'block';
+			document.getElementById('company-select').style = ''
+		}, false)
+		document.getElementById('company').addEventListener('click', function() {
+			document.getElementById('company-select').style.display = 'block';
+			document.getElementById('school-select').style = ''
+		}, false)
+
+        document.getElementsByClassName('palette')[0].addEventListener('click', function(e) {
+        	var t = e.target;
+            var c = t.style.backgroundColor;
+            var p = document.getElementsByClassName("color-picker")[0]
+            p.innerHTML = c;
+            p.style.color = c;
+        }, false)
+
+        //setTimeout()
+        function dispear() {
+            var opity = document.getElementById('fade-obj').style.opacity;
+            if(opity != 0) {   
+                document.getElementById('fade-btn').disabled = 'true';          
+                document.getElementById('fade-obj').style.opacity -= 0.1;
+                setTimeout(dispear, 500);
+            }else{
+                document.getElementById('fade-btn').innerHTML = '淡入';
+                document.getElementById('fade-btn').removeAttribute('disabled');
+            }            
+
+        }
+        //setInterval()
+        function dip() {
+            var opity = document.getElementById('fade-obj').style.opacity;
+            if(opity == 0) {
+                document.getElementById('fade-btn').innerHTML = '淡入';
+                document.getElementById('fade-btn').removeAttribute('disabled');
+                clearInterval(t);
+            }else{
+                document.getElementById('fade-btn').disabled = 'true';   
+                document.getElementById('fade-obj').style.opacity -= 0.1;
+            }     
+        }
+        document.getElementById('fade-btn').addEventListener('click', function() {
+             if (document.getElementById('fade-btn').innerHTML == '淡出'){
+        	    setTimeout(dispear,500);
+            }
+        }, false)
+        var t,s;//setInterval()使用
+        document.getElementById('fade-btn').addEventListener('click', function() {
+             if (document.getElementById('fade-btn').innerHTML == '淡出'){
+                t = setInterval(dip, 500);
+            }
+        }, false)
+
+        function appear() {
+           var opity = document.getElementById('fade-obj').style.opacity; 
+           console.log(opity);     
+            if(opity != 1) {   
+                document.getElementById('fade-btn').disabled = 'true';          
+                opity = Number(opity) + 0.2;
+                console.log(opity);
+                document.getElementById('fade-obj').style.opacity = opity;
+                console.log(document.getElementById('fade-obj').style.opacity);
+                setTimeout(appear,500);
+            }else{
+                document.getElementById('fade-btn').innerHTML = '淡出';
+                document.getElementById('fade-btn').removeAttribute('disabled');
+            }
+        }
+        document.getElementById('fade-btn').addEventListener('click', function() {
+              if (document.getElementById('fade-btn').innerHTML == '淡入') {
+                setTimeout(appear,500);
+            }
+        }, false)
+        function appears() {
+             var opity = document.getElementById('fade-obj').style.opacity; 
+            if(opity <= 1) {   
+                console.log(opity);
+                document.getElementById('fade-btn').disabled = 'true';
+                opity = Number(opity) + 0.2;         
+                document.getElementById('fade-obj').style.opacity = opity;
+            }else{
+                clearInterval(s);
+                document.getElementById('fade-btn').innerHTML = '淡出';
+                document.getElementById('fade-btn').removeAttribute('disabled');
+            }
+        }
+        document.getElementById('fade-btn').addEventListener('click', function() {
+              if (document.getElementById('fade-btn').innerHTML == '淡入') {
+               s =  setInterval(appears,500);
+            }
+        }, false)
+
+
+    // sprite 实践区
+
+        var c = 1;//次数
+        function smile() {
+            if (c <= 16) {
+                document.getElementById('sprite').style.backgroundPositionY = -c * 480 + 'px';
+                c += 1;
+            }else {
+                c = 1;
+            }
+        }
+        var m = setInterval(smile, 100);
+	</script>
+</body>
+</html>
