@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第二十二到二十四天：JavaScript的居民们</title>
+</head>
+<body>
+	<input id="stack-input" type="text">
+	<p id="stack-cont">栈内容：apple->pear</p>    
+	<button id="push-btn">进栈</button>
+	<button id="pop-btn">退栈</button>
+	<button id="font-btn">打印栈顶元素内容</button>
+	<button id="empty-btn">判断栈是否为空</button>
+
+	<script>
+	var stack = ["apple", "pear"];
+	//栈顶是数组最后一个元素
+	/*
+	document.getElementById('push-btn').addEventListener('click', function () {
+		var content = document.getElementById('stack-input').value;
+		if (content != '') {
+			stack.push(content);
+		}
+		document.getElementById('stack-cont').innerHTML = stack.join('->');
+	}, false)
+	document.getElementById('pop-btn').addEventListener('click', function () {
+		if (stack.length != 0) {
+			stack.pop();
+		}
+		document.getElementById('stack-cont').innerHTML = stack.join('->');
+	}, false)
+	document.getElementById('font-btn').addEventListener('click', function () {
+		console.log(stack[stack.length - 1]);
+	}, false)
+	document.getElementById('empty-btn').addEventListener('click', function () {
+		if (stack.length == 0) {
+			console.log('empty');
+		}else {
+			console.log('not empty');
+		}
+	}, false)
+	*/
+	//栈顶为数组第一个元素
+	document.getElementById('push-btn').addEventListener('click', function () {
+		var content = document.getElementById('stack-input').value;
+		if (content != '') {
+			stack.unshift(content);
+		}
+		document.getElementById('stack-cont').innerHTML = stack.join('<-');
+	}, false)
+	document.getElementById('pop-btn').addEventListener('click', function () {
+		if (stack.length != 0) {
+			stack.shift();
+		}
+		document.getElementById('stack-cont').innerHTML = stack.join('<-');
+	}, false)
+	document.getElementById('font-btn').addEventListener('click', function () {
+		console.log(stack[0]);
+	}, false)
+	document.getElementById('empty-btn').addEventListener('click', function () {
+		if (stack.length == 0) {
+			console.log('empty');
+		}else {
+			console.log('not empty');
+		}
+	}, false)
+	</script>
+</body>
+</html>

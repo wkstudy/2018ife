@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第二十二到二十四天：JavaScript的居民们</title>
+</head>
+<body>
+	<script>
+		var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+		arr.sort(esc);
+		console.log(arr);
+		function esc(a,b) {//小->大
+			return a - b;
+		}
+		console.log(arr.reverse());
+		arr = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+		console.log(arr.sort());
+		console.log(arr.reverse());
+		arr = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+		arr.sort(mfunction);
+		console.log(arr);
+		function mfunction(a,b) {//大->小
+			return b[1] - a[1];
+		}
+		arr = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+		console.log(arr.sort(myfunction));
+		//小->大
+		function myfunction(a,b) {
+			return a[1] - b[1];
+		}
+	</script>
+</body>
+</html>
