@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第二十八天到第三十天 给爱的人发个邮件吧</title>
+	<style>
+	input,
+	ul li {
+		text-indent: 0.8em;
+	}
+	ul li {
+		list-style: none;
+		font-size: 0.8em;
+		color: #C8C8C8;
+		height:2em;
+		line-height: 2em;
+	}
+	ul {
+		margin-top: 0;
+		padding-left: 0;
+		width: 171px;
+		border-left: 1px solid gray;
+		border-right: 1px solid gray;
+		border-bottom: 1px solid gray;
+	}
+	.email-sug {
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+	    <input id="email-input" type="text">
+	    <ul id="email-sug-wrapper" class="email-sug">
+	    	<li></li>
+	    	<li></li>
+	    	<li></li>
+	    	<li></li>
+	    	<li></li>
+	    </ul>
+	</div>
+	<script>
+		var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'],
+			len = postfixList.length;
+		document.getElementById('email-input').addEventListener('input', function () {
+   			var value = this.value;
+   			value.trim();//去掉前后空格
+   			if (value != '') {
+   				// var fragment = document.createDocumentFragment();
+   				document.getElementById('email-sug-wrapper').className= '';
+   				var arr = document.querySelectorAll('li');
+   				for (var i = 0 ; i < len;i++) {
+   					// var li = document.createElement('li');
+   					arr[i].innerHTML = value + '@' + postfixList[i];
+   					// fragment.appendChild(li);
+   				}
+   				document.getElementById('email-sug-wrapper')
+   			}else {
+   				document.getElementById('email-sug-wrapper').className= 'email-sug';
+   			}
+		}, false)
+		document.getElementById('email-input').addEventListener('blur', function () {
+			document.getElementById('email-sug-wrapper').className= 'email-sug';
+		}, false)
+		document.getElementById('email-input').addEventListener('keypress', function (e) {
+           // console.log(e.charCode);
+           if (e.charCode == 32) {//防止输入空格
+           		e.preventDefault();
+           }else {e.charCode == 13} {
+           		document.getElementById('email-sug-wrapper').className= 'email-sug';
+           }
+		}, false)
+	</script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第二十八天到第三十天 给爱的人发个邮件吧</title>
+	<style>
+	input,
+	ul li {
+		text-indent: 0.8em;
+	}
+	ul li {
+		list-style: none;
+		font-size: 0.8em;
+		color: #C8C8C8;
+		height:2em;
+		line-height: 2em;
+	}
+	ul {
+		margin-top: 0;
+		padding-left: 0;
+		width: 171px;
+		border-left: 1px solid gray;
+		border-right: 1px solid gray;
+		border-bottom: 1px solid gray;
+	}
+	ul li:hover {
+		background-color: #BFDDED;
+	}
+	.nowli {
+		background-color: #FFC5CF;
+	}
+	.email-sug {
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+	    <input id="email-input" type="text">
+	    <ul id="email-sug-wrapper" class="email-sug"></ul>
+	</div>
+	<script>
+		document.getElementById('email-input').focus();//页面加载时焦点直接到输入框
+		var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+		document.getElementById('email-input').addEventListener('input', function (e) {
+			var value = getInput(e),
+				fragment;
+			value = HtmlUtil.htmlEncode(value);//转码
+			fragment = createLiVersionThree(value);
+			liAddToUl(fragment);
+			hiddenOrShow(value);
+			if (isShow()) {
+				var arr = e.target.parentNode.querySelectorAll('li');
+				choosed(arr[0]);
+			}
+		}, false)
+		document.getElementById('email-sug-wrapper').addEventListener('click', function(e) {
+            if (e.target.nodeName.toLowerCase() == 'li') {
+            	var content = HtmlUtil.htmlDecode(e.target.innerHTML);//解码
+            	document.getElementById('email-input').value = content;
+            	hidden();
+            	document.getElementById('email-input').focus();//点击完成后焦点仍然设置到输入框
+            }
+		}, false)
+		//由于input事件主要考虑的是字符而不是所有的键，为了识别enter、上键、下键，只能添加keydown事件
+		document.getElementById('email-input').addEventListener('keydown', function(e) {
+			if (isShow()) {
+				var arr = e.target.parentNode.querySelectorAll('li'),
+					len = arr.length,
+					i,
+					currentLi;
+				for (i = 0;i < len; i++) {
+					if (arr[i].className == 'nowli') {
+						currentLi = i;
+						break;
+					}
+				}
+				if (e.keyCode == 38) {
+					//上键
+					cancelChoosed(arr[currentLi]);
+					if (currentLi == 0) {
+						choosed(arr[len - 1]);
+					}else {
+						choosed(arr[currentLi - 1]);
+					}
+				}else if (e.keyCode == 40) {
+					//下键
+					cancelChoosed(arr[currentLi]);
+					choosed(arr[(currentLi + 1) % len]);
+				}else if (e.keyCode == 13) {
+					//回车
+					var content = HtmlUtil.htmlDecode(arr[currentLi].innerHTML);//解码
+					document.getElementById('email-input').value = content;
+					hidden();
+				}else if(e.keyCode == 27) {
+					//esc   选中文本
+					document.getElementById('email-input').select();
+				}
+			}
+		}, false)
+		//转码、解码
+		var HtmlUtil = {
+	        /*1.用浏览器内部转换器实现html转码*/
+	        htmlEncode:function (html){
+	            //1.首先动态创建一个容器标签元素，如DIV
+	            var temp = document.createElement ("div");
+	            //2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐，google支持)
+	            (temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
+	            //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+	            var output = temp.innerHTML;
+	            temp = null;
+	            return output;
+	        },
+	        /*2.用浏览器内部转换器实现html解码*/
+	        htmlDecode:function (text){
+	            //1.首先动态创建一个容器标签元素，如DIV
+	            var temp = document.createElement("div");
+	            //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+	            temp.innerHTML = text;
+	            //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+	            var output = temp.innerText || temp.textContent;
+	            temp = null;
+	            return output;
+	        },
+	        /*3.用正则表达式实现html转码*/
+	        htmlEncodeByRegExp:function (str){ 
+	             var s = "";
+	             if(str.length == 0) return "";
+	             s = str.replace(/&/g,"&");
+	             s = s.replace(/</g,"<");
+	             s = s.replace(/>/g,">");
+	             s = s.replace(/ /g," ");
+	             s = s.replace(/\'/g,"'");
+	             // s = s.replace(/\"/g,""");应该有这行代码，但加上出错，就注释了
+	             return s; 
+	       },
+	       /*4.用正则表达式实现html解码*/
+	       htmlDecodeByRegExp:function (str){ 
+	             var s = "";
+	             if(str.length == 0) return "";
+	             s = str.replace(/&/g,"&");
+	             s = s.replace(/</g,"<");
+	             s = s.replace(/>/g,">");
+	             s = s.replace(/ /g," ");
+	             s = s.replace(/'/g,"\'");
+	             s = s.replace(/"/g,"\"");
+	             return s; 
+	       }
+	    };
+
+
+		//获取用户输入,并去掉空格
+		function getInput(e) {
+			// console.log(e.target.value);
+			e.target.value = e.target.value.trim();//去掉input的空格
+			return e.target.value.trim();//返回给生成li的值没有空格
+		}
+		//生成li内容
+		function createLi(value){
+			var len = postfixList.length,
+				fragment = document.createDocumentFragment();
+			for (var i = 0;i < len;i++) {
+				var li = document.createElement('li');
+				li.innerHTML = value + '@' + postfixList[i];
+				fragment.appendChild(li);
+			}
+			return fragment;
+		}
+		//输入有@的话
+		function createLiVersionTwo(value) {
+			var len = postfixList.length,
+				fragment = document.createDocumentFragment();
+			for (var i = 0;i < len;i++) {
+				var li = document.createElement('li');
+				if (value.indexOf('@') != -1) {
+					li.innerHTML = value.split('@')[0] + '@' + postfixList[i];
+				}else {
+					li.innerHTML = value + '@' + postfixList[i];
+				}
+				fragment.appendChild(li);
+			}
+			return fragment;
+		}
+		//输入@,匹配@后面的内容
+		function createLiVersionThree(value) {
+			// value = HtmlUtil.htmlEncodeByRegExp(value);//转码
+			var len = postfixList.length,
+				i,
+				li,
+				fragment = document.createDocumentFragment();
+			if (value.indexOf('@') != -1) {
+				for (i = 0;i < len; i++) {
+					if (postfixList[i].indexOf(value.split('@')[1]) == 0) {
+						li = document.createElement('li');
+						li.innerHTML = value.split('@')[0] + '@' + postfixList[i];
+						fragment.appendChild(li);
+					}
+				}
+				//如果没有匹配成功，则生成全部li
+				if (fragment.hasChildNodes() == false) {
+					for (i = 0;i < len;i++) {
+						li = document.createElement('li');
+						li.innerHTML = value.split('@')[0] + '@' + postfixList[i];
+						fragment.appendChild(li);
+					}
+				}
+			}else{
+				for (i = 0;i < len;i++) {
+					li = document.createElement('li');
+					li.innerHTML = value + '@' + postfixList[i];
+					fragment.appendChild(li);
+				}
+			}
+			return fragment;
+		}
+		//把li添加到ul中
+		function liAddToUl(fragment) {
+			document.getElementById('email-sug-wrapper').innerHTML = '';//这样删除子节点好像不太好。。。
+			document.getElementById('email-sug-wrapper').appendChild(fragment);
+		}
+		//显示还是隐藏li
+		function  hiddenOrShow(value) {
+			if (value == '') {
+				hidden();
+			}else {
+				show();
+			}
+		}
+		function hidden() {
+			document.getElementById('email-sug-wrapper').className = 'email-sug';
+		}
+		function show() {
+			document.getElementById('email-sug-wrapper').className = '';
+		}
+		//判断li是否显示
+		function isShow(){
+			if(document.getElementById('email-sug-wrapper').className == 'email-sug') {
+				return false;
+			}else {
+				return true;
+			}
+		}
+		//选中状态
+		function choosed(li) {
+			li.className = 'nowli';
+		}
+		//取消选中
+		function cancelChoosed(li) {
+			li.className = '';
+		}
+
+
+	</script>
+</body>
+</html>
