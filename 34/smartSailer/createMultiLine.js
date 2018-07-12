@@ -99,12 +99,12 @@ function cMultiLine(domid,arr,w,h,max,color,isfirst) {
 			//画圆
 			ctx.moveTo(20 + (i + 1) * widthGap + 2.5,h - 20 - barHeight * arr.sale[i]);
 			ctx.arc(20 + (i + 1) * widthGap + 2.5,h - 20 - barHeight * arr.sale[i],2.5,0 ,2 * Math.PI);
-			ctx.stroke();
 			//连接圆
 			if (i > 0) {
 				ctx.moveTo(20 + (i + 1) * widthGap,h - 20 - barHeight * arr.sale[i]);
 				ctx.lineTo(20 + i * widthGap ,h - 20 - barHeight * arr.sale[i - 1]);
 			}
+			ctx.stroke();
 			//顺便画个轴线
 			
 			if (isfirst == 1) {
@@ -115,6 +115,4 @@ function cMultiLine(domid,arr,w,h,max,color,isfirst) {
 			}
 		}
 	}
-	console.log(arr.region);
-	console.log(arr.product)
 }

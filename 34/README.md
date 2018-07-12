@@ -53,4 +53,5 @@ if(e.target.parentNode.childNodes[0].innerText == sourceData[i].product)
 	drawing.height = height;
 >>```
 * table事件代理mouseover， tr没有触发事件，不知道为什么,最后没有使用事件代理，直接循环tr绑定。
-* canvas 每次获取宽高时，都会将画布清空，重新画画
+* canvas 每次设置宽高时，都会将画布清空，重新画画
+* createMultiLine.js中最后ctx.stroke()放在了if(i > 0)前面，导致除了第一条线外，其他线最后一个点都没有和前面的点连接（虽然我也没理清到底怎么回事）。

@@ -44,7 +44,7 @@ function createLine(domid,arr,w,h) {
 		ctx.fillStyle = '#AED4C3';
 		for (i = 0;i < len;i++) {
 			//画圆
-			ctx.moveTo(20 + (i + 1) * widthGap + 2.5,h - 20 - barHeight * arr.sale[i]);
+			ctx.moveTo(20 + (i + 1) * widthGap + 2.5,h - 20 - barHeight * arr.sale[i]);//圆上一点
 			ctx.arc(20 + (i + 1) * widthGap + 2.5,h - 20 - barHeight * arr.sale[i],2.5,0 ,2 * Math.PI);
 			ctx.fill();
 			//连接圆
