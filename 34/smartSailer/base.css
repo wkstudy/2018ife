@@ -1,0 +1,16 @@
+* {
+	box-sizing: border-box;
+}
+canvas {
+	width: 50%;
+	height: 500px;
+	float: left;
+}
+line:after {
+	clear: right;
+}
+tr {
+   margin: 10px;
+   padding: 10px;
+   border: 10px solid red; ;
+}

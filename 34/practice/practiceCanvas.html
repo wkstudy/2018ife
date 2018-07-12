@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第三十四天到第三十六天：我是精明的小卖家（二）</title>
+</head>
+<body>
+	<canvas id="drawing" width="600" height="800"></canvas>
+</body>
+<script>
+	var drawing = document.getElementById('drawing');
+	if (drawing.getContext) {
+		var context = drawing.getContext('2d');
+		//线条宽度
+		context.lineWidth = '1px';
+		//线条末端形状
+		// context.lineCap = 'round';
+		//直线
+		context.beginPath();
+		context.moveTo(15,15);
+		context.lineTo(15,50);
+		context.fillStyle = '#0000ff';
+		context.stroke();
+		context.closePath();
+		//矩形
+		context.moveTo(20,15);
+		context.strokeRect(20,15,40,30);
+		//圆形  多条线是怎么回事？
+		context.beginPath();
+		context.moveTo(180,120);
+		context.arc(120,120,60,0,2 * Math.PI,true);
+		console.log(context.isPointInPath(120,60));
+		// context.strokeStyle = 'red';
+		context.stroke();
+		context.closePath();
+		//文字
+		context.font = 'bold 18px Arial';
+		context.textAlign = 'center';
+		context.textBaseline = 'middle';
+		context.strokeText('hello world',50,70);
+		//钟
+		context.moveTo(200,500);
+		context.arc(100,500,100,0,2 * Math.PI,false);
+		context.moveTo(195,500);
+		context.arc(100,500,95,0,2 * Math.PI,false);
+		context.moveTo(100,500);
+		context.lineTo(50,500);
+		context.moveTo(100,500);
+		context.lineTo(100,420);
+		context.stroke();
+		//云
+		context.moveTo(200,400);
+		context.bezierCurveTo(212,350,237,350,300,370);
+		context.bezierCurveTo(350,350,470,420,450,450);
+		context.bezierCurveTo(500,475,400,650,355,600);
+		context.bezierCurveTo(300,625,260,600,255,580);
+		context.bezierCurveTo(245,590,130,470,200,400);
+		context.stroke();
+	}
+</script>
+</html>

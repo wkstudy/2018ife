@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	测试事件代理mouseover不经过tr。
+	<table id="t">
+		<tr>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>6</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>5</td>
+			<td>11</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td>8</td>
+			<td>9</td>
+			<td>10</td>
+		</tr>
+	</table>
+</body>
+<script>
+	document.getElementById('t').addEventListener('mouseover', function(e){
+		if (e.target.nodeName.toLowerCase() == 'td') {
+			console.log('1')
+		};
+		if (e.target.nodeName.toLowerCase() == 'tr') {
+			console.log('2');
+		};
+		if (e.target.nodeName.toLowerCase() == 'table') {
+			console.log('3');
+		}
+	}, false)
+</script>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="no"?>
+<svg width = '1280' height = '1280' version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<line x1 = '10' y1 = '10' x2 = '20' y2 = '20' stroke = 'red'/>
+	<rect x = '15' y = '15' width = '50' height = '20' rx = '0' ry = '0'></rect>
+	<circle cx = '100' cy = '100' r = '30'></circle>
+	<text x = '70' y = '70' font-size = '22'>hello world</text>
+	
+	<!-- flower-->
+	<line x1 = '200' y1 = '400' x2 = '200' y2 = '600' stroke = 'green' width = '10'></line>
+	<path d="M160 360 Q 200 280 240 360 " stroke="red" fill="yellow"/>
+	<path d="M240 360 Q 300 400 240 440 " stroke="red" fill="yellow"></path>
+	<path d="M240 440 Q 200 500 160 440 " stroke="red" fill="yellow"/>
+	<path d="M160 440 Q 100 400 160 360 " stroke="red" fill="yellow"/>
+	<circle cx = '200' cy = '400' r = '40' fill = 'red'></circle>
+
+	<!-- tree-->
+	<ellipse cx = '515' cy = '400' rx = '90' ry = '70' fill = 'green'></ellipse>
+	<rect x = '500' y = '400' width = '30' height = '170' fill = 'gray'></rect>
+</svg>
