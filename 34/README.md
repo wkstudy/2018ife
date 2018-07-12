@@ -55,3 +55,4 @@ if(e.target.parentNode.childNodes[0].innerText == sourceData[i].product)
 * table事件代理mouseover， tr没有触发事件，不知道为什么,最后没有使用事件代理，直接循环tr绑定。
 * canvas 每次设置宽高时，都会将画布清空，重新画画
 * createMultiLine.js中最后ctx.stroke()放在了if(i > 0)前面，导致除了第一条线外，其他线最后一个点都没有和前面的点连接（虽然我也没理清到底怎么回事）。
+* 只有一条折线时，显示的颜色是错误的，总是和x轴、Y轴的颜色相同（可能是因为他们是同一次进行stroke()的，自己试了半天，没改过来。可以把color数组的第一个颜色改成x轴、y轴的颜色，但不想改了，留个印象，以后弄清楚一个beginPath()开始后，是不是所有的颜色都会一样。）

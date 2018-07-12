@@ -23,8 +23,14 @@ function createBar(domid,arr,width,height) {
 		ctx.lineTo(20,10);
 		ctx.stroke();
 		//图例
-		ctx.moveTo(width - 40, 10);
-		ctx.fillRect(width - 40,10,30,20);
+		ctx.fillStyle = '#AED4C3';
+		ctx.moveTo(40, 10);
+		ctx.fillRect(40,10,30,20);
+		ctx.font = 'normal 14px Arial';
+		ctx.textAlign = 'center';
+		ctx.textBaseLine = 'middle';
+		ctx.strokeText(arr.region + '-' + arr.product,60,50);
+
 		//画柱状图
 		var len = arr.sale.length,
 			i,

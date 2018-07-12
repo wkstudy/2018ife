@@ -25,8 +25,13 @@ function createLine(domid,arr,w,h) {
 		ctx.lineTo(20,20);
 		ctx.stroke();
 		//图例
-		ctx.moveTo(w - 40, 20);
-		ctx.fillRect(w - 40,10,30,20);
+		ctx.fillStyle = '#AED4C3';
+		ctx.moveTo(w - 60, 10);
+		ctx.fillRect(w - 60,10,30,20);
+		ctx.font = 'normal 14px Arial';
+		ctx.textAlign = 'center';
+		ctx.textBaseLine = 'middle';
+		ctx.strokeText(arr.region + '-' + arr.product,w - 40,50);
 		//画折线图
 		var len = arr.sale.length,
 			i,

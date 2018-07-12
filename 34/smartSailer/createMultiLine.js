@@ -84,9 +84,6 @@ function cMultiLine(domid,arr,w,h,max,color,isfirst) {
 			//y轴
 			ctx.lineTo(20,20);
 			ctx.stroke();
-			//图例
-			ctx.moveTo(w - 40, 20);
-			ctx.fillRect(w - 40,10,30,20);
 		}
 		//画折线图
 		var len = arr.sale.length,
@@ -94,7 +91,15 @@ function cMultiLine(domid,arr,w,h,max,color,isfirst) {
 			lineHeight;
 		barHeight = (h - 40) / max;
 		widthGap = ((w - 40) - 6 * 12) / 13;
+		//图例
 		ctx.strokeStyle = color;
+		ctx.fillStyle = color;
+		ctx.font = '14 Arial';
+		ctx.textAlign = 'center';
+		ctx.textBaseLine = 'middle';
+		ctx.moveTo(w - 100, 10 + 20 * isfirst);
+		ctx.fillRect(w - 100,10 + 20 * isfirst,20,10);
+		ctx.strokeText(arr.region + '-' + arr.product,w - 40,20 * isfirst + 20);
 		for (i = 0;i < len;i++) {
 			//画圆
 			ctx.moveTo(20 + (i + 1) * widthGap + 2.5,h - 20 - barHeight * arr.sale[i]);
