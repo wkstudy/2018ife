@@ -1,0 +1,20 @@
+* {
+	box-sizing: border-box;
+}
+canvas {
+	width: 50%;
+	height: 500px;
+	float: left;
+}
+line:after {
+	clear: right;
+}
+th,
+td {
+	width: 100px;
+	text-align: center!important;
+}
+tr td input {
+	display: none;
+	width: 100px;
+}
