@@ -16,7 +16,7 @@ if (!getUrlParameter()) {
 	obj.pb = 0;
 	obj.pz = 0;
 	obj.rall = 0;
-	obj.rall = 0;
+	obj.pall = 0;
 	history.replaceState(obj,'',location.href + '?rd=' + obj.rd + '&rn=' + obj.rn + '&rb=' + obj.rb + '&rall=' + obj.rall + '&ps=' + obj.ps + '&pb=' + obj.pb + '&pz=' + obj.pz + '&pall=' + obj.pall);
 }
 //初始化时默认选中两个，所以要建table
