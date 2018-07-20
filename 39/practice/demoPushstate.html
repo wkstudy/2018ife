@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第三十九天到第四十一天：我是精明的小卖家（四）</title>
+</head>
+<body>
+	<h1>直接操作pushstate</h1>
+	<button id="a">A</button>
+	<button id="b">B</button>
+	<button id="c">C</button>
+
+	<button id="d">D</button>
+	<button id="e">E</button>
+	<button id="f">F</button>
+
+
+	<div id="contABC"></div>
+	<div id="contDEF"></div>
+</body>
+<script>
+	/*
+		思路：
+			每次点击按钮，触发pushstate，将获取的信息存入pushstate的state object中，这个信息最大640k，然后点击后退、前进按钮时（刷新不触发）触发popstate，把这个state object读出来就可以了。
+		考虑：
+			1 每次点击按钮都会触发pushstate事件
+			2 浏览器每次前进或后退，都会触发onpopstate事件
+			3 页面首次载入，没有查询地址，或者查询地址不匹配，则使用第一个查询内容，并使用history.replaceState更改浏览器历史。
+			4 网址形式为：file:///F:/GitHub/2018ife/39/practice/demohash.html？s1=a&s2=d 规定 s1是abc，s2是def
+
+		总体思路：
+			1：点击按钮时，有两个任务:
+				task1:完成按钮本来的任务（这里是把对应的内容显示出来）
+				task2:完成pushstate（生成其中的state对象）
+			2:  点击前进后退按钮，引发popstate，根据e.state其中的信息，执行相应的任务（使用state中的内容进行显示或渲染，而不是使用模拟事件模拟上次的效果，那样的话模拟事件自己又会添加一次pushstate（），导致出现app.js中犯的错误（无法前进，后退的话需要点击好几次才可以成功执行））
+			3： 完成replacestate（即首次加载的时候没有参数要怎么处理，这里是初始化就绑定a、d按钮的值）
+	*/
+	document.addEventListener('click', function(e) {
+		if (e.target.nodeName.toLowerCase() == 'button') {
+			btnClick(e.target.id);
+		}
+	}, false)
+	function btnClick(id) {
+		if (id) {
+			var str1 = 'abc',
+				content = document.getElementById(id).innerHTML,
+				obj = {},
+				arr = getUrlParameter();
+			if (str1.indexOf(id) != -1) {
+				document.getElementById('contABC').innerHTML = content;
+				if (arr.s2 != 'undefined') {
+					document.getElementById('contDEF').innerHTML = document.getElementById(arr.s2).innerHTML;
+					obj.s1 = id;
+					obj.s2 = arr.s2;
+					history.pushState(obj,'',location.href.split('?')[0] + '?' + 's1' + '=' + obj.s1 + '&' + 's2' + '=' + obj.s2);
+				}else {
+					obj.s1 = id;
+					history.pushState(obj,'',location.href.split('?')[0] + '?' + 's1' + '=' + obj.s1);
+				}
+			}else {
+				document.getElementById('contDEF').innerHTML = content;
+				if (arr.s1 != 'undefined') {
+					document.getElementById('contABC').innerHTML = document.getElementById(arr.s1).innerHTML;
+					obj.s1 = arr.s1;
+					obj.s2 = id;
+					history.pushState(obj,'',location.href.split('?')[0] + '?' + 's1' + '=' + obj.s1 + '&' + 's2' + '=' + obj.s2);
+				}else {
+					obj.s2 = id;
+					history.pushState(obj,'',location.href.split('?')[0] + '?' + s2 + '=' + obj.s2);
+				}
+			}
+
+		}
+		return false;
+	}
+	window.addEventListener('popstate', function(e) {
+		if (e.state) {
+			if (e.state.s1  != 'undefined') {
+				document.getElementById('contABC').innerHTML = document.getElementById(e.state.s1).innerHTML;
+			}
+			if (e.state.s2 != 'undefined') {
+				document.getElementById('contDEF').innerHTML = document.getElementById(e.state.s2).innerHTML;
+			}
+		}else {
+			console.log('什么情况下没有state')
+		}
+		
+	}, false)
+	//获取url中的参数
+	function getUrlParameter() {
+		var url = location.href,
+			str,
+			arr = [],
+			len,
+			res = [],
+			i,
+			start = url.indexOf('?');
+		if (start == -1) {
+			return false;
+		}
+		start++;
+		str = url.substring(start);
+		arr = str.split('&');
+		len = arr.length;
+		for (i = 0;i < len;i++) {
+			res[arr[i].split('=')[0]] = arr[i].split('=')[1];
+		}
+		return res;
+	}
+	window.onload = function () {
+		//初次加载没有参数
+		if (!getUrlParameter()) {
+			var str1 = document.getElementById('a').innerHTML,
+				str2 = document.getElementById('d').innerHTML,
+				obj = {};
+			document.getElementById('contABC').innerHTML = str1;
+			document.getElementById('contDEF').innerHTML = str2;
+			obj.s1 = 'a';
+			obj.s2 = 'd';
+			history.replaceState(obj,'',location.href + '?' + 's1' + '=' + obj.s1 +'&'+ 's2' + '=' + obj.s2);
+		}
+
+	}
+</script>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第三十九天到第四十一天：我是精明的小卖家（四）</title>
+</head>
+<body>
+	<h1>直接操作hash</h1>
+	<button id="a">A</button>
+	<button id="b">B</button>
+	<button id="c">C</button>
+
+	<button id="d">D</button>
+	<button id="e">E</button>
+	<button id="f">F</button>
+
+
+	<div id="contABC"></div>
+	<div id="contDEF"></div>
+</body>
+<script>
+	function dianji(id) {
+		var content = window.location.hash.slice(1),
+			str1 = 'abc',
+			str2 = 'def';
+		if (content == '') {
+			window.location.hash = '#' + id;
+		}else if (content.length == 1) {
+			if (str1.indexOf(content) != -1) {
+				if (str1.indexOf(id) == -1) {
+					window.location.hash += id;
+				}else {
+					window.location.hash = '#' + id;
+				}
+			}else if (str2.indexOf(content) != -1) {
+				if (str2.indexOf(id) == -1) {
+					window.location.hash += id;
+				}else {
+					window.location.hash = '#' + id;
+				}				
+			}
+		}else if (content.length == 2) {
+			if (str1.indexOf(content[0]) == -1) {
+				if (str1.indexOf(id) == -1) {
+					window.location.hash = window.location.hash.replace(content[0],id);
+				}else {
+					window.location.hash = window.location.hash.replace(content[1],id);
+				}
+			}else {
+				if (str1.indexOf(id) == -1) {
+					window.location.hash = window.location.hash.replace(content[1],id);
+				}else {
+					window.location.hash = window.location.hash.replace(content[0],id);
+				}
+			}
+		}
+	}
+	document.addEventListener('click', function(e) {
+		if (e.target.nodeName.toLowerCase() == 'button') {
+			dianji(e.target.id);
+		}
+	}, false)
+	window.addEventListener('hashchange', function() {
+		var id = window.location.hash.slice(1),
+			str1 = 'abc',
+			str2 = 'def';
+		if (id.length == 1) {
+			if (str1.indexOf(id) == -1) {
+				document.getElementById('contDEF').innerHTML = document.getElementById(id).innerHTML;
+			}else {
+				document.getElementById('contABC').innerHTML = document.getElementById(id).innerHTML;
+			}
+		}else if (id.length == 2) {
+			if (str1.indexOf(id[0]) == -1) {
+				document.getElementById('contDEF').innerHTML = document.getElementById(id[0]).innerHTML;
+				document.getElementById('contABC').innerHTML = document.getElementById(id[1]).innerHTML;
+			}else {
+				document.getElementById('contDEF').innerHTML = document.getElementById(id[1]).innerHTML;
+				document.getElementById('contABC').innerHTML = document.getElementById(id[0]).innerHTML;
+			}
+		}
+	}, false)
+	window.onload = function () {
+		var id = window.location.hash.slice(1),
+			str1 = 'abc',
+			str2 = 'def';
+		if (id.length == 1) {
+			if (str1.indexOf(id) == -1) {
+				document.getElementById('contDEF').innerHTML = document.getElementById(id).innerHTML;
+			}else {
+				document.getElementById('contABC').innerHTML = document.getElementById(id).innerHTML;
+			}
+		}else if (id.length == 2) {
+			if (str1.indexOf(id[0]) == -1) {
+				document.getElementById('contDEF').innerHTML = document.getElementById(id[0]).innerHTML;
+				document.getElementById('contABC').innerHTML = document.getElementById(id[1]).innerHTML;
+			}else {
+				document.getElementById('contDEF').innerHTML = document.getElementById(id[1]).innerHTML;
+				document.getElementById('contABC').innerHTML = document.getElementById(id[0]).innerHTML;
+			}
+		}
+	}
+</script>
+</html>
