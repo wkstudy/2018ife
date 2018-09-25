@@ -136,25 +136,19 @@ for (i = 0;i < len;i++) {
 function randomOrderDishes (customer,menu) {
 	var i,
 		len = menu.length,
-		k = 0,
-		number = Math.floor(Math.random() * len + 1),//循环（1-len）次
+		number = Math.floor(Math.random() * len + 1),//点(1-len)道菜
 		flag = [];
-	for (i = 0;i < len;i++) {
+	for (i = 0; i < len; i++) {
 		flag[i] = true;
 	}
-	for (i = 0;i < number;i++) {
-		temp = Math.floor(Math.random() * len);//0 - (len - 1);
-		for (i = 0 ;i < len;i++) {
-			if (flag[i] == false) {
-				k++;//判断是否都点过了
-			}
-		}
-		while (flag[temp] == false && k!= len) {
+	for (i = 0;i < nubmer; i++) {
+		temp = Math.floor(Math.random() * len);//0-(len-1)
+		while (flag[temp] == false) {
 			temp = (temp + 1) % len;
 		}
-		if (flag[temp] == true) {
-			customer.orderDishes(menu[temp]);
-			falg[temp] = false;
-		}
+
+		customer.orderDishes(menu[temp]);
+		flag[temp] = false;
 	}
+
 }
